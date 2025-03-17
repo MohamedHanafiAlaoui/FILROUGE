@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CalendrierController extends Controller
 {
+    public function index()
+    {
+        $Calendar =  Calendrier::all();
+        return response()->json($Calendar,200);
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -25,4 +30,6 @@ class CalendrierController extends Controller
 
         return response()->json($Calendar,200);
     }
+
+
 }
