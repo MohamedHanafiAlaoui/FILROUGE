@@ -31,5 +31,22 @@ class CalendrierController extends Controller
         return response()->json($Calendar,200);
     }
 
+    public function     update (Request $request,$id)
+    {
+        $Calendar=Calendrier::findOrFail($id);
+        $request->validate([
+            'image'=>"required|string",
+            'name'=>"required|string",
+            'etapes'=>"required|string",
+        ]);
+
+        $Calendar-> Ubdate($request->all());
+
+        return response()->json($Calendar,200);
+
+    }
+
+
+
 
 }
