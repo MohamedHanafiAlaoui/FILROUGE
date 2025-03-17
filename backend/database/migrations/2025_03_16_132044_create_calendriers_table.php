@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('name');
-            $table->id('id_agriculteur');
+            $table->unsignedBigInteger('id_agriculteur');
+            $table->enum('etapes',["1","2","3"])->default('1');
             $table->timestamps();
 
             
