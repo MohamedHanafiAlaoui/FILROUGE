@@ -46,6 +46,15 @@ class CalendrierController extends Controller
 
     }
 
+    public function show($id)
+    {
+        $Calendar=Calendrier::find($id);
+
+
+        return response()->json($Calendar,200);
+
+    }
+
 
 
 
