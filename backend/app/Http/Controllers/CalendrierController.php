@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CalendrierRequest;
 use App\Models\Calendrier;
 use Illuminate\Http\Request;
 
@@ -12,21 +13,9 @@ class CalendrierController extends Controller
         $Calendar =  Calendrier::all();
         return response()->json($Calendar,200);
     }
-    public function store(Request $request)
+    public function store(CalendrierRequest $request)
     {
-        $request->validate([
-            'image'=>"required|string",
-            'name'=>"required|string",
-            'etapes'=>"required|string",
-        ]);
-
-        $Calendar = Calendrier::Create(
-        [
-            'image'=>$request->image,
-            'name'=>$request->name,
-            'id_agriculteur',
-            'etapes'=>$request->etapes,
-        ]);
+        $Calendar = Calendrier::Create($request->validated());
 
         return response()->json($Calendar,200);
     }
@@ -55,6 +44,14 @@ class CalendrierController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $Calendar=Calendrier::findOrFail($id);
+
+        $Calendar->delete();
+
+        return response()->json($Calendar,200);
+    }
 
 
 
