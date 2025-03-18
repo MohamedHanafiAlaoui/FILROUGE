@@ -10,7 +10,7 @@ class CalendrierController extends Controller
 {
     public function index()
     {
-        $Calendar =  Calendrier::all();
+        $Calendar =  Calendrier::all()->where('id_agriculteur',3);
         return response()->json($Calendar,200);
     }
     public function store(CalendrierRequest $request)
