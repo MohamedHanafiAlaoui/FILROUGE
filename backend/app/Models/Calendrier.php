@@ -10,11 +10,15 @@ class Calendrier extends Model
         'image',
         'name',
         'id_agriculteur',
-        '',
+        'etapes',
     ];
 
     public function User()
     {
         return  $this->hasMany(User::class);
+    }
+    public function CalendarEntry()
+    {
+        return $this->belongsTo(CalendarEntry::class);
     }
 }
