@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CalendrierRequest;
 use App\Models\Calendrier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalendrierController extends Controller
 {
     public function index()
     {
-        $Calendar =  Calendrier::all()->where('id_agriculteur',3);
+        $user_id = Auth::user()->id;
+        $Calendar =  Calendrier::all()->where('id_agriculteur',$user_id);
         return response()->json($Calendar,200);
     }
     public function store(CalendrierRequest $request)
     {
+
+
         $Calendar = Calendrier::Create($request->validated());
 
         return response()->json($Calendar,200);
