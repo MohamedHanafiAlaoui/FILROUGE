@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('calendar_entries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_Calendar');
+            $table->unsignedBigInteger('id_etapes');
             $table->string('description');
-            $table->enum('etapes',["1","2","3"])->default('1');
+            
 
             $table->timestamps();
 
             $table->foreign('id_Calendar')->references('id')->on('calendriers')->onDelete('cascade');
+            $table->foreign('id_etapes')->references('id')->on('etapes')->onDelete('cascade');
 
         });
     }
