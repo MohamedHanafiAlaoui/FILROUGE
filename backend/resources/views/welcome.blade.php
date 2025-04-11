@@ -122,6 +122,70 @@
         </div>
     </section>
 
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-tools"></i>
+                NOS SERVICES
+            </h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3><i class="fas fa-tasks"></i> Gestion des cultures</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Planification des plantations</li>
+                        <li><i class="fas fa-check"></i> Suivi du cycle de croissance</li>
+                        <li><i class="fas fa-check"></i> Rappels pour les interventions</li>
+                        <li><i class="fas fa-check"></i> Historique des activités</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-bug"></i> Protection des plantes</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Identification des maladies</li>
+                        <li><i class="fas fa-check"></i> Détection des parasites</li>
+                        <li><i class="fas fa-check"></i> Recommandations de traitement</li>
+                        <li><i class="fas fa-check"></i> Prévention des problèmes</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3><i class="fas fa-user-tie"></i> Conseil expert</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Accès à des agronomes</li>
+                        <li><i class="fas fa-check"></i> Analyses personnalisées</li>
+                        <li><i class="fas fa-check"></i> Recommandations spécifiques</li>
+                        <li><i class="fas fa-check"></i> Support technique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                À PROPOS
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        AgriSupport est une plateforme innovante dédiée aux agriculteurs modernes. Notre mission est de fournir des outils technologiques accessibles pour optimiser la gestion des exploitations agricoles.
+                    </p>
+                    <p class="about-description">
+                        Fondée en 2020 par une équipe d'agronomes et de technologues, notre application combine expertise agricole et solutions numériques pour accompagner les producteurs à chaque étape de leur travail.
+                    </p>
+                    <p class="about-description">
+                        Nous croyons en une agriculture durable, productive et respectueuse de l'environnement, et nous mettons tout en œuvre pour faciliter cette transition.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Équipe AgriSupport">
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 
