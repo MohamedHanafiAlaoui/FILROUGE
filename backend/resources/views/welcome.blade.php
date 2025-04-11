@@ -186,7 +186,110 @@
         </div>
     </section>
 
-
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    À propos
+                </h3>
+                <p>AgriSupport révolutionne l'agriculture grâce à des solutions technologiques innovantes pour une meilleure productivité et durabilité.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <i class="fas fa-link"></i>
+                    Liens rapides
+                </h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#home">Accueil</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#about">À propos</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <i class="fas fa-tools"></i>
+                    Services
+                </h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-seedling"></i>
+                        <a href="#">Gestion des cultures</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-bug"></i>
+                        <a href="#">Protection des plantes</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-user-tie"></i>
+                        <a href="#">Conseil expert</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-cloud-sun"></i>
+                        <a href="#">Météo agricole</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>
+                    <i class="fas fa-address-book"></i>
+                    Contact
+                </h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        Avenue Mohammed V, Rabat, Maroc
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        +212 12 34 56 78
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        contact@agrisupport.ma
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        Lun-Ven: 8h-18h
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AgriSupport. Tous droits réservés. | <a href="#" style="color: white; text-decoration: underline;">Politique de confidentialité</a> | <a href="#" style="color: white; text-decoration: underline;">Conditions d'utilisation</a></p>
+        </div>
+    </footer>
 
 
 </body>
