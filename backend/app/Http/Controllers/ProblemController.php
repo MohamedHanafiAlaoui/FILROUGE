@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Problem;
+use App\Models\FichesExplicatives;
 use Illuminate\Http\Request;
 
 class ProblemController extends Controller
 {
-    public function index($id)
+    public function index($ficheId)
     {
-        $problems = Problem::all()->where('id_FichesExplicatives',$id);
-        return response()->json($problems);
+        $fiche = FichesExplicatives::findOrFail($ficheId);
+        $problems = Problem::where('id_FichesExplicatives', $ficheId)->get();
+
+        return view('problems.index', compact('fiche', 'problems'));
     }
-
-
 
     public function store(Request $request)
     {
@@ -23,36 +24,35 @@ class ProblemController extends Controller
             'id_FichesExplicatives' => 'required|exists:fiches_explicatives,id',
         ]);
 
-        $problem = Problem::create($request->all());
+        Problem::create($request->all());
 
-        return response()->json($problem, 201);
+        return redirect()->route('problems.index', $request->id_FichesExplicatives)
+                         ->with('success', 'Problème ajouté avec succès.');
     }
 
     public function update(Request $request, $id)
     {
-        $problem = Problem::find($id);
-        if ($problem) {
-            $request->validate([
-                'symptoms' => 'required|string',
-                'solutions' => 'required|string',
-                'id_FichesExplicatives' => 'required|exists:fiches_explicatives,id',
-            ]);
+        $problem = Problem::findOrFail($id);
 
-            $problem->update($request->all());
-            return response()->json($problem);
-        } else {
-            return response()->json(['message' => 'Problem not found'], 404);
-        }
+        $request->validate([
+            'symptoms' => 'required|string',
+            'solutions' => 'required|string',
+            'id_FichesExplicatives' => 'required|exists:fiches_explicatives,id',
+        ]);
+
+        $problem->update($request->all());
+
+        return redirect()->route('problems.index', $problem->id_FichesExplicatives)
+                         ->with('success', 'Problème mis à jour.');
     }
 
     public function destroy($id)
     {
-        $problem = Problem::find($id);
-        if ($problem) {
-            $problem->delete();
-            return response()->json(['message' => 'Problem deleted successfully']);
-        } else {
-            return response()->json(['message' => 'Problem not found'], 404);
-        }
+        $problem = Problem::findOrFail($id);
+        $ficheId = $problem->id_FichesExplicatives;
+        $problem->delete();
+
+        return redirect()->route('problems.index', $ficheId)
+                         ->with('success', 'Problème supprimé.');
     }
 }
