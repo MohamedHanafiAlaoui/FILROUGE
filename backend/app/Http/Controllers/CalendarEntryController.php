@@ -11,7 +11,7 @@ class CalendarEntryController extends Controller
     {
         $CalendarEntry=CalendarEntry::all()->where('id_Calendar',$id);
 
-        return response()->json($CalendarEntry,200);
+        return view('calendar.index', compact('entries', 'id'));
 
     }
 
@@ -21,7 +21,7 @@ class CalendarEntryController extends Controller
 
         $CalendarEntry = CalendarEntry::Create($request->validated());
 
-        return response()->json($CalendarEntry,200);
+        return view('calendar.index', compact('entries'));
         
         
     }
