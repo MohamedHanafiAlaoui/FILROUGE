@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de Bord Agricole</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="./css/Sidebar.css">
     <style>
         :root {
             --primary: #4CAF50;
@@ -25,41 +25,97 @@
             --recolte: #FFC107;
             --sidebar-bg: #1B5E20;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background-color: var(--background);
             color: var(--text);
             display: flex;
             min-height: 100vh;
         }
-        
 
-        
-        /* Header Styles (your original style) */
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sidebar-menu {
+            padding: 0 15px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-dark);
+        }
+
+        .menu-icon {
+            margin-right: 10px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .menu-text {
+            font-size: 14px;
+        }
+
+        /* Header Styles */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
         }
-        
+
         .dashboard-title {
             font-size: 24px;
             font-weight: bold;
         }
-        
+
         .header-icons {
             display: flex;
             gap: 15px;
         }
-        
+
         .header-icon {
             width: 36px;
             height: 36px;
@@ -69,13 +125,13 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .main-content {
             flex: 1;
             padding: 20px;
         }
-        
-        /* Rest of your existing styles remain unchanged */
+
+        /* Stages Legend */
         .stages-legend {
             display: flex;
             gap: 20px;
@@ -85,29 +141,37 @@
             border-radius: 10px;
             box-shadow: var(--shadow);
         }
-        
+
         .stage-item {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .stage-color {
             width: 16px;
             height: 16px;
             border-radius: 50%;
         }
-        
-        .semis-color { background-color: var(--semis); }
-        .irrigation-color { background-color: var(--irrigation); }
-        .recolte-color { background-color: var(--recolte); }
-        
+
+        .semis-color {
+            background-color: var(--semis);
+        }
+
+        .irrigation-color {
+            background-color: var(--irrigation);
+        }
+
+        .recolte-color {
+            background-color: var(--recolte);
+        }
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
         }
-        
+
         .plant-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -116,29 +180,29 @@
             transition: all 0.3s ease;
             cursor: pointer;
         }
-        
+
         .plant-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-        
+
         .plant-image {
             height: 180px;
             position: relative;
             overflow: hidden;
         }
-        
+
         .plant-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
+
         .plant-card:hover .plant-image img {
             transform: scale(1.05);
         }
-        
+
         .plant-status {
             position: absolute;
             top: 15px;
@@ -150,51 +214,51 @@
             font-size: 12px;
             font-weight: 500;
         }
-        
+
         .plant-info {
             padding: 20px;
         }
-        
+
         .plant-title {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--primary-dark);
         }
-        
+
         .plant-details {
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
         }
-        
+
         .plant-detail {
             display: flex;
             align-items: center;
             font-size: 14px;
             color: var(--text-light);
         }
-        
+
         .plant-detail svg {
             margin-right: 6px;
             color: var(--primary);
         }
-        
+
         .stages-timeline {
             margin-top: 15px;
         }
-        
+
         .timeline-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        
+
         .timeline-title {
             font-size: 14px;
             font-weight: 500;
         }
-        
+
         .timeline-steps {
             display: flex;
             height: 6px;
@@ -203,51 +267,60 @@
             overflow: hidden;
             margin-bottom: 8px;
         }
-        
+
         .timeline-step {
             height: 100%;
         }
-        
-        .step-semis { background-color: var(--semis); }
-        .step-irrigation { background-color: var(--irrigation); }
-        .step-recolte { background-color: var(--recolte); }
-        
+
+        .step-semis {
+            background-color: var(--semis);
+        }
+
+        .step-irrigation {
+            background-color: var(--irrigation);
+        }
+
+        .step-recolte {
+            background-color: var(--recolte);
+        }
+
         .timeline-labels {
             display: flex;
             justify-content: space-between;
             font-size: 12px;
             color: var(--text-light);
         }
-        
+
         @media (max-width: 992px) {
             .sidebar {
                 width: 80px;
             }
-            
-            .sidebar-header, .menu-text {
+
+            .sidebar-header,
+            .menu-text {
                 display: none;
             }
-            
+
             .menu-item {
                 justify-content: center;
             }
-            
+
             .menu-icon {
                 margin-right: 0;
             }
         }
-        
+
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
-            
+
             .header-icons {
                 width: 100%;
                 justify-content: space-between;
@@ -255,6 +328,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar Section -->
     <div class="sidebar">
@@ -300,18 +374,29 @@
 
     <!-- Main Content Area -->
     <div class="main-content">
-        <!-- Your Original Header -->
+        <!-- Header -->
         <div class="header">
             <div class="dashboard-title">Dashboard</div>
             <div class="header-icons">
                 <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
                 </div>
                 <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
                 </div>
                 <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -333,133 +418,55 @@
         </div>
 
         <!-- Plant Cards Grid -->
-        <div class="grid-container" id="plantGrid">
-            <!-- Cards will be generated here by JavaScript -->
+        <div class="grid-container">
+            @foreach($calendars as $calendar)
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="https://t3.ftcdn.net/jpg/08/61/50/10/360_F_861501010_nrCiwa9E6WzvEQeqWfTgshH1mI0kcHD4.jpg" alt="{{ $calendar->name }}">
+                    <div class="plant-status">{{ $calendar->etapes }}</div>
+                </div>
+                <div class="plant-info">
+                    <h3 class="plant-title">{{ $calendar->name }}</h3>
+                    <div class="plant-details">
+                        <div class="plant-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            {{ $calendar->type ?? 'N/A' }}
+                        </div>
+                        <div class="plant-detail">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {{ $calendar->jours_restants }} jours
+                        </div>
+                    </div>
+                    <div class="stages-timeline">
+                        <div class="timeline-header">
+                            <span class="timeline-title">Étape actuelle: {{ $calendar->etapes }}</span>
+                        </div>
+                        <div class="timeline-steps">
+                            <div class="timeline-step step-semis" style="width: 33%"></div>
+                            <div class="timeline-step step-irrigation" style="width: 33%"></div>
+                            <div class="timeline-step step-recolte" style="width: 34%"></div>
+                        </div>
+                        <div class="timeline-labels">
+                            <span>Semis</span>
+                            <span>Irrigation</span>
+                            <span>Récolte</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
-
-    <script>
-        // Sample data for the cards
-        const plantData = [
-            {
-                image: "https://images.unsplash.com/photo-1594282418426-62d3e05e5a4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                name: "Tomates",
-                id_agriculteur: "AG001",
-                etape_actuelle: "Irrigation",
-                type: "Fruit",
-                etapes: [
-                    { name: "Semis", status: "completed", duration: 7 },
-                    { name: "Irrigation", status: "active", duration: 21 },
-                    { name: "Récollte", status: "pending", duration: 14 }
-                ],
-                jours_restants: 28
-            },
-            {
-                image: "https://images.unsplash.com/photo-1447175008436-054170c2e979?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                name: "Carottes",
-                id_agriculteur: "AG002",
-                etape_actuelle: "Semis",
-                type: "Légume",
-                etapes: [
-                    { name: "Semis", status: "active", duration: 10 },
-                    { name: "Irrigation", status: "pending", duration: 35 },
-                    { name: "Récollte", status: "pending", duration: 21 }
-                ],
-                jours_restants: 66
-            },
-            {
-                image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                name: "Artichauts",
-                id_agriculteur: "AG003",
-                etape_actuelle: "Récollte",
-                type: "Légume",
-                etapes: [
-                    { name: "Semis", status: "completed", duration: 14 },
-                    { name: "Irrigation", status: "completed", duration: 60 },
-                    { name: "Récollte", status: "active", duration: 7 }
-                ],
-                jours_restants: 7
-            },
-            {
-                image: "https://images.unsplash.com/photo-1515543904379-1d7c6a836bcf?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=300&q=80",
-                name: "Fraises",
-                id_agriculteur: "AG004",
-                etape_actuelle: "Irrigation",
-                type: "Fruit",
-                etapes: [
-                    { name: "Semis", status: "completed", duration: 10 },
-                    { name: "Irrigation", status: "active", duration: 28 },
-                    { name: "Récollte", status: "pending", duration: 14 }
-                ],
-                jours_restants: 35
-            }
-        ];
-
-        // Function to generate plant cards
-        function generatePlantCards() {
-            const gridContainer = document.getElementById('plantGrid');
-            gridContainer.innerHTML = '';
-
-            plantData.forEach(plant => {
-                const card = document.createElement('div');
-                card.className = 'plant-card';
-                
-                // Calculate stage percentages
-                const totalDuration = plant.etapes.reduce((sum, etape) => sum + etape.duration, 0);
-                const semisPercent = (plant.etapes[0].duration / totalDuration) * 100;
-                const irrigationPercent = (plant.etapes[1].duration / totalDuration) * 100;
-                const recoltePercent = (plant.etapes[2].duration / totalDuration) * 100;
-                
-                card.innerHTML = `
-                    <div class="plant-image">
-                        <img src="${plant.image}" alt="${plant.name}">
-                        <div class="plant-status">${plant.type}</div>
-                    </div>
-                    <div class="plant-info">
-                        <h3 class="plant-title">${plant.name}</h3>
-                        <div class="plant-details">
-                            <div class="plant-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                ${plant.id_agriculteur}
-                            </div>
-                            <div class="plant-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                ${plant.jours_restants} jours
-                            </div>
-                        </div>
-                        <div class="stages-timeline">
-                            <div class="timeline-header">
-                                <span class="timeline-title">Étape actuelle: ${plant.etape_actuelle}</span>
-                            </div>
-                            <div class="timeline-steps">
-                                <div class="timeline-step step-semis" style="width: ${semisPercent}%"></div>
-                                <div class="timeline-step step-irrigation" style="width: ${irrigationPercent}%"></div>
-                                <div class="timeline-step step-recolte" style="width: ${recoltePercent}%"></div>
-                            </div>
-                            <div class="timeline-labels">
-                                <span>Semis</span>
-                                <span>Irrigation</span>
-                                <span>Récolte</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                gridContainer.appendChild(card);
-            });
-        }
-
-        // Generate cards when page loads
-        document.addEventListener('DOMContentLoaded', generatePlantCards);
-
-        // Add active class to menu items when clicked
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                menuItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
-    </script>
 </body>
+
 </html>
