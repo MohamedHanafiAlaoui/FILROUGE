@@ -9,25 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('solutions_adaptees', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_agriculteur');
-            $table->unsignedBigInteger('id_agricole');
-            $table->string('name');
-
+            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('receiver_id');
+            $table->text('content');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('id_agriculteur')->references('id')->on('users')->onDelete('cascade');
-
+        
+            $table->foreign('sender_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('users');
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('solutions_adaptees');
     }
