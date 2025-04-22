@@ -64,4 +64,10 @@ class User extends Authenticatable
         return $this->hasMany(SolutionsAdaptees::class, 'id_agricole');
     }
 
+
+    public function isOnline()
+    {
+        return cache()->has('user-is-online')
+    }
+
 }
