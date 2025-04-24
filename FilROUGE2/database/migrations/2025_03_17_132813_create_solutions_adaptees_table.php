@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('receiver_id');
             $table->text('content');
-            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         
             $table->foreign('sender_id')->references('id')->on('users');
