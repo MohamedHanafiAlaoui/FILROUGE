@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendrierController;
+use App\Http\Controllers\SolutionsAdapteesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarEntryController;
@@ -25,3 +26,16 @@ Route::get('/agriculteur/Calendrier', [CalendrierController::class, 'index'])->n
 
 // Route::get('/agriculteur/etapes/{id}', [CalendarEntryController::class, 'index'])->name('agriculteur.etapes');
 Route::get('/agriculteur/etapes/{id}', [CalendarEntryController::class, 'index'])->name('agriculteur.etapes');
+
+
+Route::middleware('auth')->group(function()
+{
+    Route::get('/agriculteur/messages', [SolutionsAdapteesController::class,'index'])->name('user');
+    Route::post('/agriculteur/messages', [SolutionsAdapteesController::class,'chat'])->name('chat');
+    Route::post('/agriculteur/messages/sendmessage', [SolutionsAdapteesController::class,'sendMessage'])->name('sendmessage');
+
+    Route::post('/agriculteur/messages/typing', [SolutionsAdapteesController::class,'typing']);
+    Route::post('/agriculteur/messages/online', [SolutionsAdapteesController::class,'setOnline']);
+    Route::post('/agriculteur/messages/offline', [SolutionsAdapteesController::class,'setOffline']);
+
+});
