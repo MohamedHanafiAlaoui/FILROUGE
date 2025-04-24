@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgricoleSolutionsAdapteesController;
 use App\Http\Controllers\CalendrierController;
 use App\Http\Controllers\SolutionsAdapteesController;
 use App\Http\Controllers\UserController;
@@ -37,5 +38,18 @@ Route::middleware('auth')->group(function()
     Route::post('/agriculteur/messages/typing', [SolutionsAdapteesController::class,'typing']);
     Route::post('/agriculteur/messages/online', [SolutionsAdapteesController::class,'setOnline']);
     Route::post('/agriculteur/messages/offline', [SolutionsAdapteesController::class,'setOffline']);
+
+});
+
+
+Route::middleware('auth')->group(function()
+{
+    Route::get('/agricole/messages', [AgricoleSolutionsAdapteesController::class,'index'])->name('user');
+    Route::post('/agricole/messages', [AgricoleSolutionsAdapteesController::class,'chat'])->name('chat');
+    Route::post('/agricole/messages/sendmessage', [AgricoleSolutionsAdapteesController::class,'sendMessage'])->name('sendmessage');
+
+    Route::post('/agricole/messages/typing', [AgricoleSolutionsAdapteesController::class,'typing']);
+    Route::post('/agricole/messages/online', [AgricoleSolutionsAdapteesController::class,'setOnline']);
+    Route::post('/agricole/messages/offline', [AgricoleSolutionsAdapteesController::class,'setOffline']);
 
 });
