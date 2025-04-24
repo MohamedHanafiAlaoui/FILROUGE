@@ -44,12 +44,12 @@ Route::middleware('auth')->group(function()
 
 Route::middleware('auth')->group(function()
 {
-    Route::get('/agricole/messages', [AgricoleSolutionsAdapteesController::class,'index'])->name('user');
-    Route::post('/agricole/messages', [AgricoleSolutionsAdapteesController::class,'chat'])->name('chat');
-    Route::post('/agricole/messages/sendmessage', [AgricoleSolutionsAdapteesController::class,'sendMessage'])->name('sendmessage');
+    Route::get('/agricole/index', [AgricoleSolutionsAdapteesController::class,'index'])->name('user');
+    Route::post('/agricole/index', [AgricoleSolutionsAdapteesController::class,'chat'])->name('chat');
+    Route::post('/agricole/index/sendmessage', [AgricoleSolutionsAdapteesController::class,'sendMessage'])->name('sendmessage');
 
-    Route::post('/agricole/messages/typing', [AgricoleSolutionsAdapteesController::class,'typing']);
-    Route::post('/agricole/messages/online', [AgricoleSolutionsAdapteesController::class,'setOnline']);
-    Route::post('/agricole/messages/offline', [AgricoleSolutionsAdapteesController::class,'setOffline']);
+    Route::post('/agricole/index/typing', [AgricoleSolutionsAdapteesController::class,'typing']);
+    Route::post('/agricole/index/online', [AgricoleSolutionsAdapteesController::class,'setOnline']);
+    Route::post('/agricole/index/offline', [AgricoleSolutionsAdapteesController::class,'setOffline']);
 
 });

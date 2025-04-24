@@ -18,7 +18,7 @@ class AgricoleSolutionsAdapteesController extends Controller
     {
 
         $users = User::where('id', '!=', Auth::id())->get();
-        return view('agricole/messages', compact('users'));
+        return view('agricole/index', compact('users'));
     }
 
     public function chat(Request $request)
@@ -42,7 +42,7 @@ class AgricoleSolutionsAdapteesController extends Controller
         })->orderBy('created_at')->get();
 
 
-        return view('agricole/messages', compact('receiver', 'messages','users'));
+        return view('agricole/index', compact('receiver', 'messages','users'));
 
     }
 
