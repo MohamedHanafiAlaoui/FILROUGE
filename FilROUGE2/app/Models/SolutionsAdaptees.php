@@ -12,9 +12,9 @@ class SolutionsAdaptees extends Model
     protected $table = 'solutions_adaptees';
 
     protected $fillable = [
-        'id_agriculteur',
-        'id_agricole',
-        'name',
+        'sender_id',
+        'receiver_id',
+        'content',
     ];
 
     public function agriculteur()
