@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -56,18 +57,18 @@ class User extends Authenticatable
 
     public function solutionsAdapteesCommeAgriculteur()
     {
-        return $this->hasMany(SolutionsAdaptees::class, 'id_agriculteur');
+        return $this->hasMany(SolutionsAdaptees::class, 'receiver_id');
     }
 
     public function solutionsAdapteesCommeAgricole()
     {
-        return $this->hasMany(SolutionsAdaptees::class, 'id_agricole');
+        return $this->hasMany(SolutionsAdaptees::class, 'sender_id');
     }
 
 
     public function isOnline()
     {
-        return cache()->has('user-is-online')
+        return Cache::has('user-is-online-' . $this->id);
     }
 
 }
