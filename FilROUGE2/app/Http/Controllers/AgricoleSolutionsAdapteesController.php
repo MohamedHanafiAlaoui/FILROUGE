@@ -86,7 +86,7 @@ class AgricoleSolutionsAdapteesController extends Controller
     public function setOffline()
     {
 
-       Cache::forget('user-is-online'. Auth::id());
+       Cache::forget('user-is-online-'. Auth::id());
        return response()->json(['ststus' => 'Offline'] );
 
 
