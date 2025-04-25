@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Signaler extends Model
 {
-    //
+    
+    protected $table = 'signalers';
+
+    protected $fillable = [
+        'image',
+        'name',
+        'id_Calendar',
+    ];
+
+    public function calendrier()
+    {
+        return $this->belongsTo(Calendrier::class, 'id_Calendar');
+    }
+
 }
