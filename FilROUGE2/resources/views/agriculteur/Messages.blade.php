@@ -8,11 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" href="./css/Sidebar.css"> -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite(['resources/js/app.js'])
+
     <style>
         :root {
             --primary: #4CAF50;
@@ -26,9 +24,6 @@
             --text-light: #757575;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.12);
-            --semis: #2196F3;
-            --irrigation: #00BCD4;
-            --recolte: #FFC107;
             --sidebar-bg: #1B5E20;
             --unread: #E3F2FD;
             --online: #4CAF50;
@@ -51,7 +46,65 @@
             min-height: 100vh;
         }
 
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
 
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-dark);
+        }
+
+        .menu-icon {
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .menu-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
 
         /* Main Content Styles */
         .main-content {
@@ -161,27 +214,6 @@
             color: var(--primary-dark);
         }
 
-        .new-message-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .new-message-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
         .search-bar {
             position: relative;
             padding: 15px;
@@ -228,8 +260,8 @@
         }
 
         .conversation-item:hover {
-            background-color: #f9f9f9;
-            transform: translateX(5px);
+            background-color: rgba(76, 175, 80, 0.05);
+            transform: translateX(3px);
         }
 
         .conversation-item.active,
@@ -302,48 +334,6 @@
             text-overflow: ellipsis;
         }
 
-        .conversation-time {
-            font-size: 12px;
-            color: var(--text-light);
-            flex-shrink: 0;
-            margin-left: 10px;
-        }
-
-        .conversation-preview {
-            font-size: 14px;
-            color: var(--text-light);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: flex;
-            align-items: center;
-        }
-
-        .unread .conversation-name {
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .unread .conversation-preview {
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .unread-badge {
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 10px;
-            font-weight: bold;
-            margin-left: 5px;
-            flex-shrink: 0;
-        }
-
         /* Message Area */
         .message-area {
             flex: 1;
@@ -378,33 +368,6 @@
             align-items: center;
         }
 
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            margin-left: 10px;
-        }
-
-        .typing-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--typing);
-            border-radius: 50%;
-            margin-right: 3px;
-            animation: typingAnimation 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
         .message-actions {
             margin-left: auto;
             display: flex;
@@ -428,44 +391,22 @@
             padding: 20px;
             overflow-y: auto;
             background-color: #fafafa;
-            /* background-image: linear-gradient(#f5f5f5 1px, transparent 1px); */
-            background-size: 100% 30px;
-            WIDTH: 100%;
             display: flex;
             flex-direction: column;
         }
 
-        .message-date {
-            text-align: center;
-            margin: 20px 0;
-            /* position: relative; */
-            
-        }
-
-        .date-label {
-            display: inline-block;
-            background-color: #e0e0e0;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: var(--text-light);
-        }
-
         .message {
             margin-bottom: 15px;
-            max-width: 70%;
-            animation: fadeIn 0.3s ease;
+            max-width: 75%;
+            animation: fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .message.received {
             align-self: flex-start;
-            width: 100%;
-
         }
 
         .message.sent {
             align-self: flex-end;
-            width: 100%;
         }
 
         .message-content {
@@ -473,30 +414,31 @@
             border-radius: 18px;
             position: relative;
             line-height: 1.4;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-         
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            word-break: break-word;
         }
 
         .message.received .message-content {
             background-color: white;
             border-top-left-radius: 5px;
+            border-bottom-right-radius: 18px;
         }
 
         .message.sent .message-content {
             background-color: var(--primary);
             color: white;
             border-top-right-radius: 5px;
+            border-bottom-left-radius: 18px;
         }
 
         .message-time {
             font-size: 11px;
             color: var(--text-light);
-            margin-bottom: 5px;
-            text-align: center;
-            /* width: 100%; */
+            margin-top: 4px;
+            text-align: right;
+            width: 100%;
+            padding: 0 5px;
         }
-
-
 
         .message-actions-container {
             display: none;
@@ -537,7 +479,7 @@
 
         .message-input {
             width: 100%;
-            padding: 15px;
+            padding: 15px 20px;
             border-top: 1px solid #eee;
             display: flex;
             align-items: center;
@@ -550,11 +492,12 @@
             border-radius: 20px;
             padding: 12px 15px;
             resize: none;
-            height: 45px;
+            min-height: 45px;
             max-height: 120px;
             font-family: inherit;
             font-size: 14px;
             transition: all 0.3s ease;
+            line-height: 1.4;
         }
 
         .message-input textarea:focus {
@@ -568,19 +511,6 @@
             display: flex;
             align-items: center;
             margin-right: 10px;
-        }
-
-        .input-action {
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            padding: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .input-action:hover {
-            color: var(--primary);
         }
 
         .send-btn {
@@ -603,11 +533,6 @@
             background-color: var(--primary-dark);
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .send-btn:disabled {
-            background-color: #BDBDBD;
-            cursor: not-allowed;
         }
 
         .no-conversation {
@@ -638,34 +563,33 @@
             max-width: 300px;
         }
 
-        .start-conversation-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
+        /* Scrollbar Styles */
+        .conversations-scroll::-webkit-scrollbar,
+        .message-body::-webkit-scrollbar {
+            width: 6px;
         }
 
-        .start-conversation-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        .conversations-scroll::-webkit-scrollbar-track,
+        .message-body::-webkit-scrollbar-track {
+            background: var(--primary-extra-light);
+        }
+
+        .conversations-scroll::-webkit-scrollbar-thumb,
+        .message-body::-webkit-scrollbar-thumb {
+            background-color: var(--primary-light);
+            border-radius: 3px;
         }
 
         /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(5px);
             }
 
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -692,19 +616,6 @@
 
             100% {
                 transform: scale(1);
-            }
-        }
-
-        @keyframes typingAnimation {
-
-            0%,
-            60%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-5px);
             }
         }
 
@@ -746,13 +657,15 @@
             .message-area {
                 height: 500px;
             }
+
+            .message {
+                max-width: 85%;
+            }
         }
     </style>
 </head>
 
 <body>
-
-
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-title">AgriVision</div>
@@ -763,10 +676,10 @@
                 <div class="menu-icon"><i class="fas fa-tachometer-alt"></i></div>
                 <span class="menu-text">Tableau de bord</span>
             </div>
-            <div class="menu-item">
+            <a class="menu-item" href="{{ route('agriculteur.Calendrier') }}">
                 <div class="menu-icon"><i class="fas fa-leaf"></i></div>
                 <span class="menu-text">Cultures</span>
-            </div>
+            </a>
             <div class="menu-item">
                 <div class="menu-icon"><i class="fas fa-seedling"></i></div>
                 <span class="menu-text">Stades de croissance</span>
@@ -796,256 +709,223 @@
 
     <!-- Main Content Area -->
     <div class="main-content">
-        <!-- Header -->
-        <div class="header">
-            <div class="dashboard-title">Messages</div>
-            <div class="header-icons">
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </div>
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                    <div class="notification-badge">3</div>
-                </div>
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </div>
-            </div>
-        </div>
 
-        <!-- Messages Container -->
+
         <div class="messages-container">
             <!-- Conversations List -->
             <div class="conversations-list">
                 <div class="conversations-header">
                     <div class="conversations-title">Conversations</div>
-
                 </div>
 
+
                 <div class="conversations-scroll">
+                    @foreach ($users as $user)
+                        <div class="conversation-item">
+                            <div class="conversation-avatar">
+                                {{ strtoupper(substr($user->name, 0, 2)) }}
+                                <div class="status-indicator {{ $user->isOnline() ? 'status-online' : 'status-offline' }}">
+                                </div>
+                            </div>
 
-
-
-                @foreach ($users as $user)
-    <div class="conversation-item">
-        <div class="conversation-avatar">
-            {{ strtoupper(substr($user->name, 0, 2)) }}
-            <div class="status-indicator {{ $user->isOnline() ? 'status-online' : 'status-offline' }}"></div>
-        </div>
-
-        <div class="conversation-content">
-            <div class="conversation-header">
-                <div class="conversation-name">{{ $user->name }}</div>
-
-                
-                <form action="{{ route('chat') }}" method="POST" style="display: inline-block;">
-                    @csrf
-                    <input type="hidden" name="user_id" value="{{ $user->id }}">
-                    <button type="submit" class="message-action">
-                        <i class="fas fa-comment"></i> 
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-@endforeach
-
+                            <div class="conversation-content">
+                                <div class="conversation-header">
+                                    <div class="conversation-name">{{ $user->name }}</div>
+                                    <form action="{{ route('chat') }}" method="POST" style="display: inline-block;">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                        <button type="submit" class="message-action">
+                                            <i class="fas fa-comment"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
             <!-- Message Area -->
             <div class="message-area">
-                
-                <div class="message-header">
                 @if (!empty($messages))
-
-                    <div class="conversation-avatar">
-
-            {{ strtoupper(substr($receiver->name, 0, 2)) }}
-
-                        <div class="status-indicator {{ $receiver->isOnline() ? 'status-online' : 'status-offline' }}"></div>
-                    </div>
-                    <div class="message-recipient">{{ $receiver->name }}</div>
-                    <div class="message-status">
-
-                    {!! $receiver->isOnline() ? '<span>En ligne</span>' : '<span>Hors ligne</span>' !!}
-
-                        
-  
-                    </div>
-                    <div class="message-actions">
-                        <button class="message-action-btn">
-                            <i class="fas fa-phone"></i>
-                        </button>
-                        <button class="message-action-btn">
-                            <i class="fas fa-video"></i>
-                        </button>
-                        <button class="message-action-btn">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="chat-box"  class="message-body">
-     
-                @foreach ($messages as $message )
-
-
-                    <div class="message {{ $message->sender_id == auth()->id() ? 'received' : 'sent'  }} ">
-                        <div class="message-content">
-                        {{ $message->content}}
+                    <div class="message-header">
+                        <div class="conversation-avatar">
+                            {{ strtoupper(substr($receiver->name, 0, 2)) }}
+                            <div class="status-indicator {{ $receiver->isOnline() ? 'status-online' : 'status-offline' }}">
+                            </div>
                         </div>
-
-                        <div class="message-actions-container">
-                            <button class="message-action" title="Répondre">
-                                <i class="fas fa-reply"></i>
+                        <div class="message-recipient">{{ $receiver->name }}</div>
+                        <div class="message-status">
+                            {!! $receiver->isOnline() ? '<span>En ligne</span>' : '<span>Hors ligne</span>' !!}
+                        </div>
+                        <div class="message-actions">
+                            <button class="message-action-btn">
+                                <i class="fas fa-phone"></i>
                             </button>
-                            <button class="message-action" title="Transférer">
-                                <i class="fas fa-share"></i>
+                            <button class="message-action-btn">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button class="message-action-btn">
+                                <i class="fas fa-ellipsis-v"></i>
                             </button>
                         </div>
-
-                        
                     </div>
-                    <div class="message-time">{{ $message->created_at->format('H:i') }}</div>
 
+                    <div id="chat-box" class="message-body">
+                        @foreach ($messages as $message)
+                            <div class="message {{ $message->sender_id == auth()->id() ?   'sent' : 'received' }}">
+                                <div class="message-content">
+                                    {{ $message->content }}
+                                </div>
+                                <div class="message-actions-container">
+                                    <button class="message-action" title="Répondre">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
+                                    <button class="message-action" title="Transférer">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="message-time">{{ $message->created_at->format('H:i') }}</div>
+                        @endforeach
+                    </div>
 
-                    @endforeach
-                
-                    
-                  
-
-
-
- 
-                </div>
-
-                <div class="message-input">
-                    <div class="input-actions">
-
-                    <form id="message-form"  method="post" style="    width: 100%;
-    display: flex
-;">
-
-                        <input type="hidden" name="receiver_id" value="{{ $receiver->id }}">
-                    <textarea placeholder="Écrivez un message..." name="content" id="messageInput"></textarea>
-                    <button class="send-btn" id="sendBtn" type="submit" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </button>
-                    </form>
-
-                </div>
+                    <div class="message-input">
+                        <div class="input-actions">
+                            <form id="message-form" method="post" style="width: 100%; display: flex;">
+                                @csrf
+                                <input type="hidden" name="receiver_id" value="{{ $receiver->id }}">
+                                <textarea placeholder="Écrivez un message..." name="content" id="messageInput"></textarea>
+                                <button class="send-btn" id="sendBtn" type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <div class="no-conversation">
+                        <i class="fas fa-comments"></i>
+                        <h3>Aucune conversation sélectionnée</h3>
+                        <p>Sélectionnez une conversation existante ou démarrez-en une nouvelle</p>
+                    </div>
                 @endif
             </div>
         </div>
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-document.addEventListener('DOMContentLoaded', function (){
-            
-            let receiverId = {{ $receiver->id }};
+
+            @if(isset($receiver))
+                let receiverId = {{ $receiver->id }};
+            @else
+                let receiverId = null;
+            @endif
             let senderId = {{ auth()->id() }};
             let chatBox = document.getElementById('chat-box');
             let messageForm = document.getElementById('message-form');
             let messageInput = document.getElementById('messageInput');
-            let typingIndicator = document.getElementById('message-status');
+
+
 
             // Set user online
-            fetch('/agriculteur/messages/online', 
-                { 
-                    method: 'POST', 
-                    headers: { 
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}'
-                    } 
+            fetch('/agriculteur/messages/online', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}'
                 }
-            );
+            });
+
+            // Listen for new messages
+
+
 
             window.Echo.private('chat.' + senderId)
-                        .listen('MessageSent', (e) => {
-     
-                            const messages = @json($messages);
-                        
-                            messages.forEach(message => {
-        chatBox.innerHTML += `
-            <div class="message sent">
-                <div class="message-content">${message.content}</div>
-                <div class="message-time">${new Date(message.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
-                <div class="message-actions-container">
-                    <button class="message-action" title="Répondre">
-                        <i class="fas fa-reply"></i>
-                    </button>
-                    <button class="message-action" title="Transférer">
-                        <i class="fas fa-share"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-    });
-                        });
+                .listen('MessageSent', (e) => {
+                    chatBox.innerHTML += `
+                                                    <div class="message  sent">
+                                <div class="message-content">
+                                    ${e.message.content}
+                                </div>
+                                <div class="message-actions-container">
+                                    <button class="message-action" title="Répondre">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
+                                    <button class="message-action" title="Transférer">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
 
-         window.Echo.private('typing.' + receiverId)
-                    .listen('UserTyping', (e) => {
-                            if(e.typerId === receiverId){
-                                typingIndicator.style.display = 'block';
-                                setTimeout(() => typingIndicator.style.display = 'none', 3000);
-                            }
-                        });
-        messageForm.addEventListener('submit', function (e) {
+                        
+                        `
+
+                });
+
+
+                // window.Echo.private('typing.' + receiverId)
+                //     .listen('UserTyping', (e) => {
+                //     console.log(e);
+
+
+                //         });
+
+            // Handle message form submission
+            messageForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                const message = messageInput.value;
+                const message = messageInput.value.trim();
+
                 if (message) {
-                    fetch(`/agriculteur/messages/sendmessage`, {
+                    fetch('/agriculteur/messages/sendmessage', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
-                        body: JSON.stringify({ receiver_id: receiverId, 
-                            content: message })
-                    });
-
+                        body: JSON.stringify({
+                            receiver_id: receiverId,
+                            content: message
+                        })
+                    })
 
                     chatBox.innerHTML += `
-            <div class="message received">
-                <div class="message-content">${message}</div>
-                <div class="message-time"></div>
-                <div class="message-actions-container">
-                    <button class="message-action" title="Répondre">
-                        <i class="fas fa-reply"></i>
-                    </button>
-                    <button class="message-action" title="Transférer">
-                        <i class="fas fa-share"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-                }
+                            <div class="message  sent">
+                                <div class="message-content">
+                                    ${message}
+                                </div>
+                                <div class="message-actions-container">
+                                    <button class="message-action" title="Répondre">
+                                        <i class="fas fa-reply"></i>
+                                    </button>
+                                    <button class="message-action" title="Transférer">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        
+                        `
+
+                        messageInput.value = '';
+                    }
             });
-            
-
-        })
 
 
 
+            // Auto-resize textarea
+            messageInput.addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+
+        });
     </script>
-
-  
 </body>
 
 </html>
