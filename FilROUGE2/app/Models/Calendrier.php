@@ -15,10 +15,16 @@ class Calendrier extends Model
 
     public function User()
     {
-        return  $this->hasMany(User::class);
+        return $this->hasMany(User::class);
     }
     public function CalendarEntry()
     {
         return $this->belongsTo(CalendarEntry::class);
     }
+
+    public function signalers()
+    {
+        return $this->hasMany(Signaler::class, 'id_Calendar');
+    }
 }
+

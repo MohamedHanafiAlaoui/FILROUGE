@@ -42,7 +42,7 @@ class SolutionsAdapteesController extends Controller
         })->orderBy('created_at')->get();
 
 
-        return view('agriculteur/messages', compact('receiver', 'messages','users'));
+        return view('agriculteur/messages', compact('receiver', 'messages', 'users'));
 
     }
 
@@ -57,7 +57,7 @@ class SolutionsAdapteesController extends Controller
 
         broadcast(new MessageSent($SolutionsAdapt))->toOthers();
 
-        return response()->json(['status' => 'Message sent!'] );
+        return response()->json(['status' => 'Message sent!']);
 
 
     }
@@ -69,7 +69,7 @@ class SolutionsAdapteesController extends Controller
 
         broadcast(new UserTyping(Auth::id()))->toOthers();
 
-        return response()->json(['status' => 'typing brodcadted!'] );
+        return response()->json(['status' => 'typing brodcadted!']);
 
 
     }
@@ -79,15 +79,15 @@ class SolutionsAdapteesController extends Controller
         Cache::put('user-is-online-' . Auth::id(), true, now()->addMinutes(10));
         return response()->json(['status' => 'online']);
     }
-    
+
 
 
 
     public function setOffline()
     {
 
-       Cache::forget('user-is-online'. Auth::id());
-       return response()->json(['ststus' => 'Offline'] );
+        Cache::forget('user-is-online' . Auth::id());
+        return response()->json(['ststus' => 'Offline']);
 
 
 
