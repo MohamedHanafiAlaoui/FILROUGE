@@ -21,11 +21,10 @@ class CalendrierController extends Controller
     
     public function store(CalendrierRequest $request)
     {
-        $calendar = Calendrier::create($request->validated());
-
-        $user_id = Auth::user()->id;
-        $calendars = Calendrier::where('id_agriculteur', $user_id)->get();
-        return view('calendrier.index', compact('calendars'));
+        $validatedData = $request->validated();
+        $validatedData['id_agriculteur'] = Auth::id(); 
+        Calendrier::create($validatedData);
+        return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier ajouté avec succès');
     }
 
     public function update(Request $request, $id)
@@ -40,9 +39,8 @@ class CalendrierController extends Controller
 
         $calendar->update($request->all());
 
-        $user_id = Auth::user()->id;
-        $calendars = Calendrier::where('id_agriculteur', $user_id)->get();
-        return view('calendrier.index', compact('calendars'));
+        return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier ajouté avec succès');
+
     }
 
     public function show($id)
@@ -56,8 +54,7 @@ class CalendrierController extends Controller
         $calendar = Calendrier::findOrFail($id);
         $calendar->delete();
 
-        $user_id = Auth::user()->id;
-        $calendars = Calendrier::where('id_agriculteur', $user_id)->get();
-        return view('calendrier.index', compact('calendars'));
+        return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier ajouté avec succès');
+
     }
 }
