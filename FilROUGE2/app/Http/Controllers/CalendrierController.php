@@ -54,7 +54,7 @@ class CalendrierController extends Controller
         $calendar = Calendrier::findOrFail($id);
         $calendar->delete();
 
-        return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier ajouté avec succès');
+        return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier supprimé avec succès');
 
     }
 }
