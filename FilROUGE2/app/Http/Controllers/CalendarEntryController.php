@@ -3,49 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\CalendarEntry;
+use App\Models\Calendrier;
+use App\Models\Etapes;
 use Illuminate\Http\Request;
+
+
+use Illuminate\Support\Facades\Auth;
 
 class CalendarEntryController extends Controller
 {
     public function index($id)
     {
-        // $CalendarEntrys=CalendarEntry::all()->where('id_Calendar',$id);
-        $calendarEntries = CalendarEntry::where('id_Calendar', $id)->get();
+        $calendarEntries = CalendarEntry::with('etape')->where('id_Calendar', $id)->get();
+        $etapes = Etapes::all();
+        $user_id = Auth::user()->id;
+        $calendar = Calendrier::where('id', $id)
+                          ->where('id_agriculteur', $user_id)
+                          ->firstOrFail(); 
 
-        return view('agriculteur.etepes', compact('calendarEntries'));
-
+        return view('agriculteur.etepes', compact('calendarEntries' , 'calendar','etapes'));
     }
-
-
-    public function store(CalendarEntryRequest $request)
-    {
-
-        $CalendarEntry = CalendarEntry::Create($request->validated());
-
-        $entries = CalendarEntry::where('id_Calendar', $CalendarEntry->id_Calendar)->get();
-
-        return view('calendar.index', compact('entries')); return view('calendar.index', compact('entries'));
-        
-        
-    }
-
-
-    public function   update (Request $request,$id)
-    {
-        $CalendarEntry=CalendarEntry::findOrFail($id);
-        $request->validate([
-            'image'=>"required|string",
-            'name'=>"required|string",
-            'etapes'=>"required|string",
-        ]);
-
-        $CalendarEntry-> Ubdate($request->all());
-        $entries = CalendarEntry::where('id_Calendar', $CalendarEntry->id_Calendar)->get();
-
-        return view('calendar.index', compact('entries'));
-    }
-
-    
 
 
 }
