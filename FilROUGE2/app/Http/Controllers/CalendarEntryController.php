@@ -37,4 +37,19 @@ class CalendarEntryController extends Controller
         return redirect()->route('calendar.entries', ['id' => $request->id_Calendar])
         ->with('success', 'Étape ajoutée avec succès');    }
 
+    public function update(Request $request, $id)
+    {
+        $calendarEntry = CalendarEntry::findOrFail($id);
+
+        $request->validate([
+            'id_Calendar' => 'required|exists:calendriers,id',
+            'id_etapes' => 'required|exists:etapes,id',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $calendarEntry->update($request->all());
+        return redirect()->route('calendar.entries', ['id' => $request->id_Calendar])
+        ->with('success', 'Étape ajoutée avec succès');    
+
+    }
 }
