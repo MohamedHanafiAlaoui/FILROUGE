@@ -1,54 +1,84 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Signaler;
+use App\Models\Calendrier;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class SignalerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $signalers = Signaler::with('calendrier')->get();
-        return response()->json($signalers);
+        $query = Signaler::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+
+        $signalers = $query->paginate(10);
+
+        return view('agriculteur.signalers', compact('signalers'));
     }
+
+
 
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|string',
-            'name' => 'required|string',
-            'id_Calendar' => 'required|exists:calendriers,id',
+            'image' => 'required|file|image',
+            'name' => 'required|string|max:255',
+            'description' => 'required',
+            'id_Calendar' => 'required',
         ]);
 
-        $signaler = Signaler::create($request->all());
-        return response()->json($signaler, 201);
+        $imagePath = Storage::disk('public')->putFile('problems', $request->file('image'));
+
+        Signaler::create([
+            'image' => $imagePath,
+            'name' => $request->name,
+            'description' => $request->description,
+            'calendar_id' => $request->id_Calendar,
+        ]);
+
+        
+        return redirect()->route('calendar.entries')->with('success', 'Signalement ajouté avec succès.');
     }
 
     public function show($id)
     {
-        $signaler = Signaler::with('calendrier')->findOrFail($id);
-        return response()->json($signaler);
+        $signaler = Signaler::findOrFail($id);
+        return view('agriculteur.detailsSignalers', compact('signaler'));
     }
+
+
 
     public function update(Request $request, $id)
     {
         $signaler = Signaler::findOrFail($id);
 
-        $request->validate([
-            'image' => 'sometimes|required|string',
-            'name' => 'sometimes|required|string',
-            'id_Calendar' => 'sometimes|required|exists:calendriers,id',
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required',
+            'id_Calendar' => 'required|exists:calendriers,id',
+            'image' => 'nullable|file|image',
         ]);
 
-        $signaler->update($request->all());
-        return response()->json($signaler);
+        if ($request->hasFile('image')) {
+            $data['image'] = file_get_contents($request->file('image'));
+        }
+
+        $signaler->update($data);
+
+        return redirect()->route('signalers.index')->with('success', 'Signalement mis à jour.');
     }
 
     public function destroy($id)
     {
         $signaler = Signaler::findOrFail($id);
         $signaler->delete();
-        return response()->json(['message' => 'Deleted successfully']);
+
+        return redirect()->route('signalers.index')->with('success', 'Signalement supprimé.');
     }
 }
