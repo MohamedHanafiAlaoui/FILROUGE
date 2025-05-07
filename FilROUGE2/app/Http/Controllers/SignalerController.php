@@ -30,7 +30,7 @@ class SignalerController extends Controller
             'image' => 'required|file|image',
             'name' => 'required|string|max:255',
             'description' => 'required',
-            'id_Calendar' => 'required',
+            'id_culture' => 'required',
         ]);
 
         $imagePath = Storage::disk('public')->putFile('problems', $request->file('image'));
@@ -39,11 +39,11 @@ class SignalerController extends Controller
             'image' => $imagePath,
             'name' => $request->name,
             'description' => $request->description,
-            'calendar_id' => $request->id_Calendar,
+            'id_culture' => $request->id_Calendar,
         ]);
 
         
-        return redirect()->route('calendar.entries')->with('success', 'Signalement ajouté avec succès.');
+        return redirect()->route('signalers.index')->with('success', 'Signalement ajouté avec succès.');
     }
 
     public function show($id)
@@ -61,7 +61,7 @@ class SignalerController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required',
-            'id_Calendar' => 'required|exists:calendriers,id',
+            'id_culture' => 'required|exists:calendriers,id',
             'image' => 'nullable|file|image',
         ]);
 
