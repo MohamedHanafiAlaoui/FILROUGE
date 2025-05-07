@@ -17,4 +17,9 @@ class FichesExplicatives extends Model
     {
         return $this->hasMany(Problem::class, 'id_FichesExplicatives');
     }
+
+    public function etapeTechniques()
+    {
+        return $this->hasMany(EtapeTechnique::class,'id_FichesExplicatives');
+    }
 }
