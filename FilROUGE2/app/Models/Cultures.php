@@ -17,9 +17,9 @@ class Cultures extends Model
     {
         return $this->hasMany(User::class);
     }
-    public function CalendarEntry()
+    public function Stadesculture()
     {
-        return $this->belongsTo(CalendarEntry::class);
+        return $this->belongsTo(Stadesculture::class);
     }
 
     public function signalers()
