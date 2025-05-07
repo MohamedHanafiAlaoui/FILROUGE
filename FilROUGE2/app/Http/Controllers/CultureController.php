@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CalendrierRequest;
-use App\Models\Calendrier;
+use App\Models\cultures;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CalendrierController extends Controller
+class CultureController extends Controller
 {
    
     public function index()
     {
         $user_id = Auth::user()->id;
-        $calendars = Calendrier::where('id_agriculteur', $user_id)->get();
+        $calendars = cultures::where('id_agriculteur', $user_id)->get();
         
         return view('agriculteur.Calendrier', compact('calendars'));
     }
@@ -23,13 +23,13 @@ class CalendrierController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['id_agriculteur'] = Auth::id(); 
-        Calendrier::create($validatedData);
+        cultures::create($validatedData);
         return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier ajouté avec succès');
     }
 
     public function update(Request $request, $id)
     {
-        $calendar = Calendrier::findOrFail($id);
+        $calendar = cultures::findOrFail($id);
 
         $request->validate([
             'image' => "required|string",
@@ -45,13 +45,13 @@ class CalendrierController extends Controller
 
     public function show($id)
     {
-        $calendar = Calendrier::findOrFail($id);
+        $calendar = cultures::findOrFail($id);
         return view('calendrier.show', compact('calendar'));
     }
 
     public function destroy($id)
     {
-        $calendar = Calendrier::findOrFail($id);
+        $calendar = cultures::findOrFail($id);
         $calendar->delete();
 
         return redirect()->route('agriculteur.Calendrier')->with('success', 'Calendrier supprimé avec succès');
