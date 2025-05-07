@@ -25,7 +25,6 @@ class CalendrierRequest extends FormRequest
             'image'=>"required|string",
             'name'=>"required|string",
             'etapes'=>"required|string",
-            'id_agriculteur'=>"required|integer"
         ];
     }
 }
