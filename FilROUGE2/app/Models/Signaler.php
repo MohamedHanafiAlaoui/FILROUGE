@@ -12,12 +12,13 @@ class Signaler extends Model
     protected $fillable = [
         'image',
         'name',
-        'id_Calendar',
+        'id_culture',
+        'description',
     ];
 
     public function calendrier()
     {
-        return $this->belongsTo(Calendrier::class, 'id_Calendar');
+        return $this->belongsTo(cultures::class, 'calendar_id');
     }
 
 }
