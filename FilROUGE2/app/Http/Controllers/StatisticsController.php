@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Calendrier; // Ensure your models are properly imported
+use App\Models\cultures; // Ensure your models are properly imported
 use App\Models\Signaler;
 use App\Models\User;
 use Illuminate\Support\Facades\DB; // For DB operations
@@ -12,9 +12,9 @@ class StatisticsController extends Controller
     public function statistics()
     {
         // Calendar Statistics
-        $totalCalendars = Calendrier::count();
+        $totalCalendars = cultures::count();
         
-        $calendarsByType = Calendrier::select('etapes', DB::raw('COUNT(*) as count'))
+        $calendarsByType = cultures::select('etapes', DB::raw('COUNT(*) as count'))
             ->groupBy('etapes')
             ->get()
             ->pluck('count', 'etapes');
@@ -29,7 +29,7 @@ class StatisticsController extends Controller
         // Signal Statistics
         $totalSignals = Signaler::count();
         
-        $signalsPerCalendar = Calendrier::select('calendriers.id', 'calendriers.name', 'calendriers.etapes', DB::raw('COUNT(signalers.id) as signal_count'))
+        $signalsPerCalendar = cultures::select('calendriers.id', 'calendriers.name', 'calendriers.etapes', DB::raw('COUNT(signalers.id) as signal_count'))
             ->leftJoin('signalers', 'calendriers.id', '=', 'signalers.calendar_id')
             ->groupBy('calendriers.id', 'calendriers.name', 'calendriers.etapes')
             ->orderByDesc('signal_count')
@@ -37,7 +37,7 @@ class StatisticsController extends Controller
             ->get();
     
         // Monthly Data (last 6 months)
-        $calendarMonthlyData = Calendrier::selectRaw('COUNT(*) as count, YEAR(created_at) year, MONTH(created_at) month')
+        $calendarMonthlyData = cultures::selectRaw('COUNT(*) as count, YEAR(created_at) year, MONTH(created_at) month')
             ->where('created_at', '>=', now()->subMonths(6))
             ->groupBy('year', 'month')
             ->orderBy('year')
