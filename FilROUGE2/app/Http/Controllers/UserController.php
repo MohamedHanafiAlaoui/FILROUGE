@@ -47,7 +47,22 @@ class UserController extends Controller
             return back()->withErrors(['email' => 'Email ou mot de passe invalide.']);
         }
 
-        return redirect()->route('agriculteur.Calendrier');
+        $user = Auth::user();
+
+
+        if ( $user->id_role == 1) {
+            return redirect()->route('admin.index');
+        
+        } elseif ($user->id_role == 2) {
+            return redirect()->route('useragricole');
+
+        }else
+        {
+            return redirect()->route('agriculteur.Calendrier');
+
+        }
+
+       
     }
 
     public function logout(Request $request)
