@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CalendierSeeder::class);
         $this->call(EtapesSeeder::class);
         $this->call(CalendarEntrySeeder::class);
+        $this->call(SignalerSeeder::class);
+        $this->call(FichesExplicativesSeeder::class);
     }
 }
