@@ -77,7 +77,7 @@ class FichesExplicativesController extends Controller
             }
         }
 
-        $fiches = FichesExplicatives::with('problems', 'etapes')->get();  // Include etapes in the relationship
+        $fiches = FichesExplicatives::with('problems', 'etapeTechniques')->get();  // Include etapes in the relationship
         return view('admin/create', compact('fiches'));
     }
 
