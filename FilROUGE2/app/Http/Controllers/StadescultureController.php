@@ -18,24 +18,25 @@ class StadescultureController extends Controller
         $etapes = Etapes::all();
         $user_id = Auth::user()->id;
         $calendar = cultures::where('id', $id)
-                          ->where('id_agriculteur', $user_id)
-                          ->firstOrFail(); 
+            ->where('id_agriculteur', $user_id)
+            ->firstOrFail();
 
-        return view('agriculteur.etepes', compact('calendarEntries' , 'calendar','etapes'));
+        return view('agriculteur.etepes', compact('calendarEntries', 'calendar', 'etapes'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_culture' => 'required|integer', 
+            'id_culture' => 'required|integer',
             'id_etapes' => 'required|integer',
             'description' => 'required|string|max:255',
         ]);
-    
+
         Stadesculture::create($validated);
-    
-        return redirect()->route('calendar.entries', ['id' => $request->id_Calendar])
-        ->with('success', 'Étape ajoutée avec succès');    }
+
+        return redirect()->route('calendar.entries', ['id' => $request->id_culture])
+            ->with('success', 'Étape ajoutée avec succès');
+    }
 
     public function update(Request $request, $id)
     {
@@ -49,7 +50,7 @@ class StadescultureController extends Controller
 
         $calendarEntry->update($request->all());
         return redirect()->route('calendar.entries', ['id' => $request->id_Calendar])
-        ->with('success', 'Étape ajoutée avec succès');    
+            ->with('success', 'Étape ajoutée avec succès');
 
     }
 }
