@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('signalers', function (Blueprint $table) {
+        Schema::create('stades_cultures', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('name');
-            $table->text('description'); 
             $table->unsignedBigInteger('id_culture');
+            $table->unsignedBigInteger('id_etapes');
+            $table->string('description');
+            
+
             $table->timestamps();
+
             $table->foreign('id_culture')->references('id')->on('cultures')->onDelete('cascade');
+            $table->foreign('id_etapes')->references('id')->on('etapes')->onDelete('cascade');
 
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('signalers');
+        Schema::dropIfExists('stades_cultures');
     }
 };

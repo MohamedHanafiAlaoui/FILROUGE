@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('signalers', function (Blueprint $table) {
+        Schema::create('cultures', function (Blueprint $table) {
             $table->id();
             $table->string('image');
             $table->string('name');
-            $table->text('description'); 
-            $table->unsignedBigInteger('id_culture');
+            $table->unsignedBigInteger('id_agriculteur');
+            $table->enum('etapes',["Semis","Irrigation","Récolte"])->default('Semis');
             $table->timestamps();
-            $table->foreign('id_culture')->references('id')->on('cultures')->onDelete('cascade');
 
+            
+            $table->foreign('id_agriculteur')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('signalers');
+        Schema::dropIfExists('cultures');
     }
 };
