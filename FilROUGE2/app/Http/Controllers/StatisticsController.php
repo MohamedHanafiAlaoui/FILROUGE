@@ -19,8 +19,8 @@ class StatisticsController extends Controller
             ->get()
             ->pluck('count', 'etapes');
         
-        $calendarsPerFarmer = User::select('users.id', 'users.name', DB::raw('COUNT(calendriers.id) as calendar_count'))
-            ->join('calendriers', 'users.id', '=', 'calendriers.id_agriculteur')
+        $calendarsPerFarmer = User::select('users.id', 'users.name', DB::raw('COUNT(cultures.id) as calendar_count'))
+            ->join('cultures', 'users.id', '=', 'cultures.id_agriculteur')
             ->groupBy('users.id', 'users.name')
             ->orderByDesc('calendar_count')
             ->take(5)
@@ -29,9 +29,9 @@ class StatisticsController extends Controller
         // Signal Statistics
         $totalSignals = Signaler::count();
         
-        $signalsPerCalendar = cultures::select('calendriers.id', 'calendriers.name', 'calendriers.etapes', DB::raw('COUNT(signalers.id) as signal_count'))
-            ->leftJoin('signalers', 'calendriers.id', '=', 'signalers.calendar_id')
-            ->groupBy('calendriers.id', 'calendriers.name', 'calendriers.etapes')
+        $signalsPerCalendar = cultures::select('cultures.id', 'cultures.name', 'cultures.etapes', DB::raw('COUNT(signalers.id) as signal_count'))
+            ->leftJoin('signalers', 'cultures.id', '=', 'signalers.id_culture')
+            ->groupBy('cultures.id', 'cultures.name', 'cultures.etapes')
             ->orderByDesc('signal_count')
             ->take(5)
             ->get();
