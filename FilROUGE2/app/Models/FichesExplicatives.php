@@ -20,6 +20,6 @@ class FichesExplicatives extends Model
 
     public function etapeTechniques()
     {
-        return $this->hasMany(EtapeTechnique::class,'id_FichesExplicatives');
+        return $this->hasMany(EtapeTechnique::class, 'id_FichesExplicatives');
     }
 }

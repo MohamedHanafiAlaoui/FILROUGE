@@ -18,6 +18,7 @@ class EtapeTechnique extends Model
 
     public function ficheExplicative()
     {
-        return $this->belongsTo(FichesExplicatives::class,id_FichesExplicatives);
+        return $this->belongsTo(FichesExplicatives::class, 'id_FichesExplicatives');
     }
+    
 }
