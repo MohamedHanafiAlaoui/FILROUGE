@@ -257,7 +257,7 @@
             </button>
             
             <div class="login-link">
-                Déjà inscrit ? <a href="#">Connectez-vous</a>
+                Déjà inscrit ? <a href="{{ route('login') }}">Connectez-vous</a>
             </div>
         </form>
     </div>

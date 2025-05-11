@@ -235,7 +235,7 @@
             </button>
 
             <div class="register-link">
-                Nouveau utilisateur ? <a href="#">Créer un compte</a>
+                Nouveau utilisateur ? <a href="{{ route('inscription') }}">Créer un compte</a>
             </div>
         </form>
     </div>
