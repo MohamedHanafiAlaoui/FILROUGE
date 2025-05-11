@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -161,19 +162,42 @@
             body {
                 padding: 15px;
             }
-            
+
             .login-container {
                 padding: 30px 20px;
             }
-            
+
             .login-form-header h1 {
                 font-size: 1.6rem;
             }
         }
     </style>
 </head>
+
 <body>
+    @if ($errors->any())
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let errors = @json($errors->all());
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreurs de validation',
+                    html: `
+                        <ul style="text-align: left; padding-left: 20px;">
+                            ${errors.map(error => `<li>${error}</li>`).join('')}
+                        </ul>
+                    `,
+                    confirmButtonText: 'D\'accord'
+                });
+            });
+        </script>
+    @endif
+
+
+
     <div class="login-container">
+
+
         <div class="login-form-header">
             <h1>
                 <i class="fas fa-leaf"></i>
@@ -181,21 +205,23 @@
             </h1>
             <p>Entrez vos identifiants pour accéder à votre compte</p>
         </div>
-        
+
+
         <form method="POST" action="{{ route('login.submit') }}">
-        @csrf
+            @csrf
             <div class="form-group">
                 <label for="email">Adresse Email</label>
                 <i class="fas fa-envelope input-icon"></i>
                 <input type="email" id="email" name="email" class="form-control" placeholder="votre@email.com" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <i class="fas fa-lock input-icon"></i>
-                <input type="password" id="password"  name="password" class="form-control" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="••••••••"
+                    required>
             </div>
-            
+
             <div class="remember-forgot">
                 <div class="remember-me">
                     <input type="checkbox" id="remember">
@@ -203,18 +229,21 @@
                 </div>
                 <a href="#" class="forgot-password">Mot de passe oublié ?</a>
             </div>
-            
+
             <button type="submit" class="btn-login">
                 <i class="fas fa-sign-in-alt"></i> Se connecter
             </button>
-            
+
             <div class="register-link">
                 Nouveau utilisateur ? <a href="#">Créer un compte</a>
             </div>
         </form>
     </div>
 
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
+
 </html>
