@@ -59,7 +59,7 @@
                     CONTACT US
                 </a>
             </div>
-            <a href="/Connexion" class="btn-login" onclick="route(event)">
+            <a href="{{route('login')}}" class="btn-login" >
                 <i class="fas fa-sign-in-alt"></i> Login
             </a>
         </nav>
@@ -69,11 +69,9 @@
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="green-pattern">
-            <!-- Dynamically generated squares for the pattern -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const pattern = document.querySelector('.green-pattern');
-                    // Adjust number of squares based on screen width
                     const squaresCount = window.innerWidth > 768 ? 500 : 600;
                     
                     for (let i = 0; i < squaresCount; i++) {
@@ -83,7 +81,6 @@
                         pattern.appendChild(square);
                     }
                     
-                    // Mobile menu toggle
                     const menuToggle = document.getElementById('menuToggle');
                     const navLinks = document.getElementById('navLinks');
                     
