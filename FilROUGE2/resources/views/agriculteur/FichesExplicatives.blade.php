@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/Sidebar.css">
     <style>
         :root {
             --primary: #4CAF50;
@@ -41,6 +40,66 @@
             min-height: 100vh;
         }
         
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--background);
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item.active {
+            background-color: var(--primary-dark);
+        }
+
+        .menu-icon {
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .menu-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
 
 
         
@@ -285,6 +344,8 @@
             
             .menu-item {
                 justify-content: center;
+                color: var(--background);
+                text-decoration: none;
             }
             
             .menu-icon {
@@ -345,34 +406,25 @@
             <div class="sidebar-subtitle">Gestion des cultures</div>
         </div>
         <div class="sidebar-menu">
-            <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-tachometer-alt"></i></div>
-                <span class="menu-text">Tableau de bord</span>
-            </div>
-            <div class="menu-item">
+
+            <a class="menu-item" href="{{ route('agriculteur.Calendrier') }}">
                 <div class="menu-icon"><i class="fas fa-leaf"></i></div>
                 <span class="menu-text">Cultures</span>
-            </div>
-            <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-seedling"></i></div>
-                <span class="menu-text">Stades de croissance</span>
-            </div>
-            <div class="menu-item">
+            </a>
+
+            <a class="menu-item" href="{{ route('signalers.index') }}">
                 <div class="menu-icon"><i class="fas fa-binoculars"></i></div>
                 <span class="menu-text">Surveillance</span>
-            </div>
-            <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
-                <span class="menu-text">Analytiques</span>
-            </div>
-            <div class="menu-item">
+            </a>
+
+            <a class="menu-item " href="{{ route('user') }}">
                 <div class="menu-icon"><i class="fas fa-envelope"></i></div>
                 <span class="menu-text">Messages</span>
-            </div>
-            <div class="menu-item active">
+            </a>
+            <a class="menu-item active" href="{{ route('agriculteur.FichesExplicatives') }}">
                 <div class="menu-icon"><i class="fas fa-file-alt"></i></div>
                 <span class="menu-text">Fiches Explicatives</span>
-            </div>
+            </a>
             <div class="menu-item">
                 <div class="menu-icon"><i class="fas fa-cog"></i></div>
                 <span class="menu-text">Paramètres</span>
@@ -385,174 +437,47 @@
         <!-- Header -->
         <div class="header">
             <div class="dashboard-title">Fiches Explicatives</div>
-            <div class="header-icons">
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                </div>
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                </div>
-                <div class="header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </div>
-            </div>
+
         </div>
 
         <!-- Filter Section -->
         <div class="filter-section">
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Rechercher des fiches...">
-            </div>
-            
-            <div class="filter-tags">
-                <div class="filter-tag active">Toutes</div>
-                <div class="filter-tag">Techniques</div>
-                <div class="filter-tag">Santé des plantes</div>
-                <div class="filter-tag">Réglementation</div>
-                <div class="filter-tag">Innovations</div>
-            </div>
-        </div>
+    <form method="GET" action="{{ route('agriculteur.FichesExplicatives') }}" class="search-bar">
+        <i class="fas fa-search"></i>
+        <input 
+            type="text" 
+            name="search" 
+            value="{{ request('search') }}" 
+            placeholder="Rechercher des fiches..."
+        >
+    </form>
+</div>
+
 
         <!-- Fiches Grid -->
         <div class="fiches-grid">
-            <!-- Fiche 1 -->
+
+        @foreach ($fiches as $fiche)
             <div class="fiche-card">
                 <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Techniques de semis">
-                    <div class="fiche-category category-technique">Technique</div>
+                    <img src="{{ $fiche->image }}" alt="Techniques de semis">
                 </div>
                 <div class="fiche-info">
-                    <h3 class="fiche-title">Techniques de semis optimisées</h3>
-                    <p class="fiche-description">Découvrez les meilleures pratiques pour maximiser votre taux de germination et assurer une croissance uniforme de vos cultures.</p>
+                    <h3 class="fiche-title">{{$fiche-> name}}</h3>
+                    <p class="fiche-description">
+                    {{$fiche-> description}}
+                    </p>
                     <div class="fiche-footer">
                         <span class="fiche-date">15 Mars 2023</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ route('Technique.show', $fiche->id) }}" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            
-            <!-- Fiche 2 -->
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Maladies courantes">
-                    <div class="fiche-category category-sante">Santé</div>
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">Identifier et traiter les maladies courantes</h3>
-                    <p class="fiche-description">Guide visuel pour reconnaître les symptômes des maladies végétales et les traitements biologiques recommandés.</p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">28 Février 2023</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fiche 3 -->
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Réglementation">
-                    <div class="fiche-category category-reglementation">Réglementation</div>
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">Nouvelle réglementation phytosanitaire 2023</h3>
-                    <p class="fiche-description">Mise à jour complète des changements réglementaires affectant l'utilisation des produits phytosanitaires cette année.</p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">10 Janvier 2023</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fiche 4 -->
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Irrigation">
-                    <div class="fiche-category category-technique">Technique</div>
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">Systèmes d'irrigation éco-efficaces</h3>
-                    <p class="fiche-description">Comparaison des différentes méthodes d'irrigation et leur impact sur la consommation d'eau et le rendement des cultures.</p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">5 Décembre 2022</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fiche 5 -->
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Agriculture de précision">
-                    <div class="fiche-category category-innovation">Innovation</div>
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">Introduction à l'agriculture de précision</h3>
-                    <p class="fiche-description">Comment les technologies numériques transforment les pratiques agricoles pour une meilleure efficacité.</p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">20 Novembre 2022</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Fiche 6 -->
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&h=180&q=80" alt="Engrais naturels">
-                    <div class="fiche-category category-technique">Technique</div>
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">Préparer ses propres engrais naturels</h3>
-                    <p class="fiche-description">Recettes et méthodes pour créer des engrais organiques à partir de ressources disponibles localement.</p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">15 Octobre 2022</span>
-                        <a href="#" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+        @endforeach
+
+
         </div>
     </div>
 
-    <script>
-        // Add active class to menu items when clicked
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                menuItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
-        
-        // Filter tags functionality
-        const filterTags = document.querySelectorAll('.filter-tag');
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                filterTags.forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
-                
-                // Here you would typically filter the fiches based on the selected category
-                // For this example, we're just changing the UI
-            });
-        });
-        
-        // Search functionality
-        const searchInput = document.querySelector('.search-bar input');
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const fiches = document.querySelectorAll('.fiche-card');
-            
-            fiches.forEach(fiche => {
-                const title = fiche.querySelector('.fiche-title').textContent.toLowerCase();
-                const description = fiche.querySelector('.fiche-description').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                    fiche.style.display = 'flex';
-                } else {
-                    fiche.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
