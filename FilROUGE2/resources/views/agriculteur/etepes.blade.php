@@ -42,9 +42,17 @@
                 <span class="menu-text">Fiches Explicatives</span>
             </a>
             <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-cog"></i></div>
-                <span class="menu-text">Paramètres</span>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button style="background: none;width: 100%;border: none;display: flex;color: white;}" type="submit">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span class="menu-text">Paramètres</span>
+                    </button>
+                </form>
+
             </div>
+
         </div>
     </div>
 

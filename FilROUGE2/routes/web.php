@@ -3,6 +3,8 @@
 use App\Http\Controllers\AgricoleSolutionsAdapteesController;
 use App\Http\Controllers\CultureController;
 use App\Http\Controllers\FichesExplicativesController;
+use App\Http\Controllers\HistoriqueQuestionController;
+use App\Http\Controllers\HistoriqueQuestionsController;
 use App\Http\Controllers\SignalerController;
 use App\Http\Controllers\SolutionsAdapteesController;
 use App\Http\Controllers\UserController;
@@ -15,13 +17,16 @@ Route::get('/inscription', [UserController::class, 'showRegisterForm'])->name('i
 Route::post('/inscription', [UserController::class, 'register'])->name('inscription');
 Route::get('/connexion', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/connexion', [UserController::class, 'login'])->name('login.submit');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('agricole/HistoriqueQuestions', function () {
+    return view('agricole.HistoriqueQuestions');
+});
 
 
 Route::middleware(['auth'])->group(function () {
@@ -105,7 +110,25 @@ Route::middleware('auth')->group(function () {
     Route::post('/agricole/online', [AgricoleSolutionsAdapteesController::class, 'setOnline']);
     Route::post('/agricole/offline', [AgricoleSolutionsAdapteesController::class, 'setOffline']);
 
+
+    
+    Route::get('/historique-questions', [HistoriqueQuestionController::class, 'index'])
+    ->name('agricole.historique-questions');
+
+Route::post('/historique-questions', [HistoriqueQuestionController::class, 'store'])
+    ->name('agricole.historique-questions.store');
+
+Route::get('/historique-questions/{id}/edit', [HistoriqueQuestionController::class, 'edit'])
+    ->name('agricole.historique-questions.edit');
+
+Route::put('/historique-questions/{id}', [HistoriqueQuestionController::class, 'update'])
+    ->name('agricole.historique-questions.update');
+
+Route::delete('/historique-questions/{id}', [HistoriqueQuestionController::class, 'destroy'])
+    ->name('agricole.historique-questions.destroy');
 });
+
+
 
 
 

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fiches Explicatives - AgriVision</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
@@ -25,21 +27,21 @@
             --irrigation: #00BCD4;
             --recolte: #FFC107;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         body {
             background-color: var(--background);
             color: var(--text);
             display: flex;
             min-height: 100vh;
         }
-        
+
         .sidebar {
             width: 250px;
             background-color: var(--sidebar-bg);
@@ -102,26 +104,26 @@
         }
 
 
-        
+
         /* Main Content Styles */
         .main-content {
             flex: 1;
             padding: 30px;
         }
-        
+
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
         }
-        
+
         .dashboard-title {
             font-size: 24px;
             font-weight: bold;
             position: relative;
         }
-        
+
         .dashboard-title::after {
             content: '';
             position: absolute;
@@ -132,12 +134,12 @@
             background-color: var(--primary);
             border-radius: 3px;
         }
-        
+
         .header-icons {
             display: flex;
             gap: 15px;
         }
-        
+
         .header-icon {
             width: 36px;
             height: 36px;
@@ -149,13 +151,13 @@
             position: relative;
             transition: all 0.3s ease;
         }
-        
+
         .header-icon:hover {
             background-color: var(--primary);
             color: white;
             transform: translateY(-2px);
         }
-        
+
         /* Filter Section */
         .filter-section {
             display: flex;
@@ -165,13 +167,13 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .search-bar {
             position: relative;
             flex-grow: 1;
             max-width: 400px;
         }
-        
+
         .search-bar input {
             width: 100%;
             padding: 12px 15px 12px 40px;
@@ -180,13 +182,13 @@
             font-size: 14px;
             transition: all 0.3s ease;
         }
-        
+
         .search-bar input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
         }
-        
+
         .search-bar i {
             position: absolute;
             left: 15px;
@@ -194,13 +196,13 @@
             transform: translateY(-50%);
             color: var(--text-light);
         }
-        
+
         .filter-tags {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
-        
+
         .filter-tag {
             padding: 8px 15px;
             background-color: var(--primary-extra-light);
@@ -209,19 +211,20 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
-        .filter-tag:hover, .filter-tag.active {
+
+        .filter-tag:hover,
+        .filter-tag.active {
             background-color: var(--primary);
             color: white;
         }
-        
+
         /* Fiches Grid */
         .fiches-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
-        
+
         .fiche-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -231,29 +234,29 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .fiche-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-        
+
         .fiche-image {
             height: 180px;
             position: relative;
             overflow: hidden;
         }
-        
+
         .fiche-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-        
+
         .fiche-card:hover .fiche-image img {
             transform: scale(1.05);
         }
-        
+
         .fiche-category {
             position: absolute;
             top: 15px;
@@ -265,21 +268,21 @@
             font-size: 12px;
             font-weight: 500;
         }
-        
+
         .fiche-info {
             padding: 20px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
-        
+
         .fiche-title {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--primary-dark);
         }
-        
+
         .fiche-description {
             font-size: 14px;
             color: var(--text-light);
@@ -287,19 +290,19 @@
             line-height: 1.5;
             flex: 1;
         }
-        
+
         .fiche-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
         }
-        
+
         .fiche-date {
             font-size: 12px;
             color: var(--text-light);
         }
-        
+
         .fiche-link {
             color: var(--primary);
             text-decoration: none;
@@ -309,95 +312,103 @@
             gap: 5px;
             transition: all 0.3s ease;
         }
-        
+
         .fiche-link:hover {
             color: var(--primary-dark);
             transform: translateX(3px);
         }
-        
+
         /* Category Colors */
         .category-technique {
             background-color: var(--semis);
         }
-        
+
         .category-sante {
             background-color: var(--irrigation);
         }
-        
+
         .category-reglementation {
             background-color: var(--recolte);
         }
-        
+
         .category-innovation {
             background-color: var(--secondary);
         }
-        
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .sidebar {
                 width: 80px;
             }
-            
-            .sidebar-header, .menu-text {
+
+            .sidebar-header,
+            .menu-text {
                 display: none;
             }
-            
+
             .menu-item {
                 justify-content: center;
                 color: var(--background);
                 text-decoration: none;
             }
-            
+
             .menu-icon {
                 margin-right: 0;
             }
         }
-        
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
-            
+
             .header-icons {
                 width: 100%;
                 justify-content: space-between;
             }
-            
+
             .filter-section {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .search-bar {
                 max-width: 100%;
                 width: 100%;
             }
-            
+
             .fiches-grid {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes fadeInUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-            to { 
+
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar Section -->
     <div class="sidebar">
@@ -426,8 +437,16 @@
                 <span class="menu-text">Fiches Explicatives</span>
             </a>
             <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-cog"></i></div>
-                <span class="menu-text">Paramètres</span>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button style="background: none;width: 100%;border: none;display: flex;color: white;}"
+                        type="submit">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span class="menu-text">Paramètres</span>
+                    </button>
+                </form>
+
             </div>
         </div>
     </div>
@@ -437,47 +456,44 @@
         <!-- Header -->
         <div class="header">
             <div class="dashboard-title">Fiches Explicatives</div>
-
+        <div class="filter-section">
+            <form method="GET" action="{{ route('agriculteur.FichesExplicatives') }}" class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Rechercher des fiches...">
+            </form>
+        </div>
         </div>
 
         <!-- Filter Section -->
-        <div class="filter-section">
-    <form method="GET" action="{{ route('agriculteur.FichesExplicatives') }}" class="search-bar">
-        <i class="fas fa-search"></i>
-        <input 
-            type="text" 
-            name="search" 
-            value="{{ request('search') }}" 
-            placeholder="Rechercher des fiches..."
-        >
-    </form>
-</div>
+
 
 
         <!-- Fiches Grid -->
         <div class="fiches-grid">
 
-        @foreach ($fiches as $fiche)
-            <div class="fiche-card">
-                <div class="fiche-image">
-                    <img src="{{ $fiche->image }}" alt="Techniques de semis">
-                </div>
-                <div class="fiche-info">
-                    <h3 class="fiche-title">{{$fiche-> name}}</h3>
-                    <p class="fiche-description">
-                    {{$fiche-> description}}
-                    </p>
-                    <div class="fiche-footer">
-                        <span class="fiche-date">15 Mars 2023</span>
-                        <a href="{{ route('Technique.show', $fiche->id) }}" class="fiche-link">Voir plus <i class="fas fa-arrow-right"></i></a>
+            @foreach ($fiches as $fiche)
+                <div class="fiche-card">
+                    <div class="fiche-image">
+                        <img src="{{ $fiche->image }}" alt="Techniques de semis">
+                    </div>
+                    <div class="fiche-info">
+                        <h3 class="fiche-title">{{$fiche->name}}</h3>
+                        <p class="fiche-description">
+                            {{$fiche->description}}
+                        </p>
+                        <div class="fiche-footer">
+                            <span class="fiche-date">15 Mars 2023</span>
+                            <a href="{{ route('Technique.show', $fiche->id) }}" class="fiche-link">Voir plus <i
+                                    class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
 
 
         </div>
     </div>
 
 </body>
+
 </html>

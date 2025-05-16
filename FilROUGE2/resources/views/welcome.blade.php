@@ -54,10 +54,7 @@
                     <i class="fas fa-info-circle"></i>
                     ABOUT
                 </a>
-                <a href="#contact">
-                    <i class="fas fa-envelope"></i>
-                    CONTACT US
-                </a>
+ 
             </div>
             <a href="{{route('login')}}" class="btn-login" >
                 <i class="fas fa-sign-in-alt"></i> Login

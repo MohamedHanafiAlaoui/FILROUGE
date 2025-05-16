@@ -975,10 +975,7 @@
                         <i class="fas fa-comments"></i>
                         <h3>Aucune conversation sélectionnée</h3>
                         <p>Sélectionnez une conversation existante ou démarrez-en une nouvelle</p>
-                        <button class="start-conversation-btn">
-                            <i class="fas fa-plus"></i>
-                            Nouvelle conversation
-                        </button>
+  
                     </div>
                 @endif
             </div>
@@ -1015,7 +1012,7 @@
             window.Echo.private('chat.' + senderId)
                 .listen('MessageSent', (e) => {
                     chatBox.innerHTML += `
-                                <div class="message  sent">
+                                <div class="message  received">
                                 <div class="message-content">
                                     ${e.message.content}
                                 </div>

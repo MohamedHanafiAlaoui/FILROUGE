@@ -42,9 +42,18 @@
                 <span class="menu-text">Fiches Explicatives</span>
             </a>
             <div class="menu-item">
-                <div class="menu-icon"><i class="fas fa-cog"></i></div>
-                <span class="menu-text">Paramètres</span>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button style="background: none;width: 100%;border: none;display: flex;color: white;}" type="submit">
+                        <div class="menu-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        <span class="menu-text">Paramètres</span>
+                    </button>
+                </form>
+
             </div>
+
+
         </div>
     </div>
 
@@ -80,7 +89,8 @@
             @foreach($calendars as $calendar)
                 <div class="plant-card" data-id="{{ $calendar->id }}">
                     <div class="plant-image">
-                        <img src="{{ $calendar->image ? $calendar->image : "https://images.unsplash.com/photo-1582284540020-8acbe03f4924"}}" alt="{{ $calendar->name }}">
+                        <img src="{{ $calendar->image ? $calendar->image : "https://images.unsplash.com/photo-1582284540020-8acbe03f4924"}}"
+                            alt="{{ $calendar->name }}">
                         <div class="plant-status">{{ $calendar->etapes }}</div>
                     </div>
                     <div class="plant-info">
@@ -124,7 +134,7 @@
                         </div>
                         <!-- Action buttons -->
                         <div class="plant-actions">
-                            <a class="action-btn details-btn" href="/agriculteur/entries/{{ $calendar->id}}" >
+                            <a class="action-btn details-btn" href="/agriculteur/entries/{{ $calendar->id}}">
                                 <i class="fas fa-eye"></i>
                                 Détails
                             </a>
@@ -189,11 +199,11 @@
             <p>Êtes-vous sûr de vouloir supprimer cette fiche explicative ? Cette action est irréversible.</p>
             <div class="confirmation-buttons">
                 <button class="confirm-btn confirm-cancel" onclick="closeDeleteModal()">Annuler</button>
-                    <form id="confirmDeleteform" action="" method="post">
-                        @csrf
-                        @method('DELETE')
+                <form id="confirmDeleteform" action="" method="post">
+                    @csrf
+                    @method('DELETE')
                     <button class="confirm-btn confirm-delete" id="confirmDeleteBtn">Supprimer</button>
-                    </form>
+                </form>
             </div>
         </div>
     </div>
@@ -277,7 +287,7 @@
         function confirmDelete(id) {
             currentDeleteId = id;
             document.getElementById('deleteModal').style.display = 'flex';
-            document.getElementById('confirmDeleteform').action =  `/agriculteur/Calendrier/delete/${id}`;
+            document.getElementById('confirmDeleteform').action = `/agriculteur/Calendrier/delete/${id}`;
         }
 
 

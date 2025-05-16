@@ -17,7 +17,7 @@ class SolutionsAdapteesController extends Controller
     public function index()
     {
 
-        $users = User::where('id', '!=', Auth::id())->get();
+        $users = User::where('id', '!=', Auth::id())->orWhere('id_role',2)->get();
         return view('agriculteur/messages', compact('users'));
     }
 
